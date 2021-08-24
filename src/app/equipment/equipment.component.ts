@@ -35,14 +35,30 @@ export class EquipmentComponent implements OnInit {
      return this.maximumAllowedMass - this.cargoMass <= 200;
    }
 
-   itemCount(item: object) {
-     let index = this.cargoHold.includes(item);
-     let count = 0
+   itemCount(item: string):boolean {
+     
+     let count = {};
     for(let i=0 ; i<this.cargoHold.length; i++){
-      console.log("Item insde: "+ this.cargoHold[i])
+      console.log(this.cargoHold[i]);
+      if(count[this.cargoHold[i]]){
+        count[this.cargoHold[i]] += 1;
+      }else{
+        count[this.cargoHold[i]] = 1;
+      }
     }
-     console.log("After if condition "+ count + this.cargoHold[1]);
+    for(let prop in count){
+       if(count[prop] > 2){
+        console.log("In False: "+ count);
+         return true;
+       }else{
+        console.log(count);
+         return false
+       }
+    }
 
+    
+
+    
    }
    
 }
